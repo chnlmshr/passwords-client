@@ -13,7 +13,10 @@ function App() {
         }
       });
       let newpasswords = await res.json() || passwords;
-      newpasswords.data.sort((a, b) => a.id - b.id)
+      newpasswords.data.sort((a, b) => a.id - b.id);
+      newpasswords.data.forEach(element => {
+        console.log(element.id, element.name);
+      });
       setPasswords({ data: newpasswords.data, timestamp: newpasswords.timestamp })
     }
     fetchData();
@@ -35,7 +38,7 @@ function App() {
           {passwords.data.map((e, key) =>
             <div key={key} className='element'>
               <div className="id">{e.id}</div>
-              <div className="password">{e.password}</div>
+              <div className="password">{e.name}</div>
             </div>
           )}
         </div>
